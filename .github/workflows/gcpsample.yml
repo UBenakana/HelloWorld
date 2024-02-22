@@ -20,5 +20,3 @@ jobs:
 
     - run: |
         gcloud services list
-        gcloud compute instances list 
-        gcloud sql instances list
