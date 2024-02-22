@@ -1,0 +1,22 @@
+name: Display GCP Resources
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  display-resources:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: google-github-actions/setup-gcloud@v0
+      with: 
+        service_account_key: ${{ secrets.GOOGLECLOUD }}
+
+    - run: |
+        gcloud services list
+        gcloud compute instances list
+        gcloud sql instances list
