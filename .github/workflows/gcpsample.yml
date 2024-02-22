@@ -1,12 +1,12 @@
 name: Display GCP Resources
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: 
 
 jobs:
 
   display-resources:
-  
+
     runs-on: ubuntu-latest
 
     steps:
@@ -14,9 +14,10 @@ jobs:
 
     - uses: google-github-actions/auth@v0
       with:
-        credentials_json: ${{ secrets.GOOGLECLOUD }}
+        credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-    - uses: google-github-actions/setup-gcloud@v0
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
 
-    - run: |
+    - run: | 
         gcloud services list
