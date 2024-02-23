@@ -20,7 +20,7 @@ jobs:
           token_format: "access_token"
           create_credentials_file: true
           activate_credentials_file: true
-          workload_identity_provider: 'projects/953951798314/locations/global/workloadIdentityPools/github-wif-pool/providers/githubwif'
+          workload_identity_provider: 'projects/953951798314/locations/global/workloadIdentityPools/github-wif-pool/providers/githubwi.f'
           service_account: 'test-wif@grand-voltage-415103.iam.gserviceaccount.com'
           access_token_lifetime: '100s'
       - name: Set up Cloud SDK
