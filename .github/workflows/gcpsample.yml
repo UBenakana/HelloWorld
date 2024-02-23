@@ -1,24 +1,31 @@
-name: List services in GCP
-
+name: wif-ci
 on:
-  workflow_dispatch: 
-
-permissions:
-  id-token: write
-
+  push:
+    branches:
+      - 'main'
 jobs:
-  Get_OIDC_ID_token:
+  build:
+    name: "Test WIF"
     runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
-    - id: 'auth'
-      name: 'Authenticate to GCP'
-      uses: 'google-github-actions/auth@v0.3.1'
-      with:
-          create_credentials_file: 'true'
+      - name: Checkout
+        uses: actions/checkout@v2
+      - id: auth
+        uses: google-github-actions/auth@v0.4.0
+        with:
+          token_format: "access_token"
+          create_credentials_file: true
+          activate_credentials_file: true
           workload_identity_provider: 'projects/953951798314/locations/global/workloadIdentityPools/github-wif-pool/providers/githubwif'
           service_account: 'test-wif@grand-voltage-415103.iam.gserviceaccount.com'
-    - id: 'gcloud'
-      name: 'gcloud'
-      run: |-
-        gcloud services list --project=grand-voltage-415103
-
+          access_token_lifetime: '100s'
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.3.0
+      - name: set crdential_file
+        run: gcloud auth login --cred-file=${{steps.auth.outputs.credentials_file_path}}
+      - name: Run gcloud
+        run: gcloud compute instances list --zones us-east4-c
