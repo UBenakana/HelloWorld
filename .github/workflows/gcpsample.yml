@@ -15,8 +15,8 @@ jobs:
       uses: 'google-github-actions/auth@v0.3.1'
       with:
           create_credentials_file: 'true'
-          workload_identity_provider: 'projects/953951798314/locations/global/workloadIdentityPools/github-actions-pool/providers/my-repo'
-          service_account: 'githubactions-sa@grand-voltage-415103.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/953951798314/locations/global/workloadIdentityPools/github-wif-pool/attribute.repository/UBenakana/HelloWorld'
+          service_account: 'test-wif@grand-voltage-415103.iam.gserviceaccount.com'
     - id: 'gcloud'
       name: 'gcloud'
       run: |-
