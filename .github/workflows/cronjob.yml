@@ -1,30 +1,26 @@
-name: Test Cron Job
+name: Run Every Minute
 
 on:
   schedule:
     - cron: '* * * * *'
+  push:
+    branches:
+      - main # Replace with your specific branch name
 
 jobs:
 
-  cron-job:
-    name: Cron Job
-    runs-on: windows-latest
+  run-every-minute:
+    runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      
-    - name: Setup PowerShell
-      uses: actions/setup-powershell@v3
-      
-    - name: Run PowerShell Script
+    - uses: actions/checkout@v3
+    
+    - name: Run every minute
       run: |
-        $currentTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-        Write-Host "Running PowerShell script at $currentTime (IST)"
+        echo "This job runs every minute!"
+        echo "Branch: ${{ github.ref }}"
         
-        # Sample PowerShell commands
-        Get-Process | Sort-Object CPU -Descending | Select-Object -First 5
-        
-        Write-Host "PowerShell script completed."
-      env:
-        TZ: Asia/Kolkata
+    - name: Run additional commands
+      run: |
+        # Add any additional commands or scripts you want to execute
+        # ...
