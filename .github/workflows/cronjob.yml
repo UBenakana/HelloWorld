@@ -1,25 +1,24 @@
-name: Test Cron Job
-
-on:
-  schedule:
-    - cron: '*/5 * * * *' # Run every minute
-
-jobs:
-  cron_job:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: uday
-
-      - name: Set up PowerShell
-        uses: actions/setup-powershell@v2
-        with:
-          pwsh-version: '7.x'
-
-      - name: Run cron job script
-        run: |
-          Write-Host "This is a sample cron job script"
-          Write-Host "Another line of output"
-          Write-Host "Additional output line"
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: test-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: test-container
+            image: mcr.microsoft.com/powershell:lts-nanoserver-1809
+            command:
+            - pwsh
+            - -c
+            - |
+              Write-Host "Running PowerShell script at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+              
+              # Sample PowerShell commands
+              Get-Process | Sort-Object CPU -Descending | Select-Object -First 5
+              
+              Write-Host "PowerShell script completed."
+          restartPolicy: OnFailure
