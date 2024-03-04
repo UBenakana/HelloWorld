@@ -3,6 +3,10 @@ name: Greetings
 on:
   schedule:
     - cron: '* * * * *' # Run every minute
+    
+  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   greeting:
