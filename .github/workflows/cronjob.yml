@@ -1,0 +1,26 @@
+name: Run Every Minute
+
+on:
+  schedule:
+    - cron: '* * * * *'
+  push:
+    branches:
+      - main # Replace with your specific branch name
+
+jobs:
+
+  run-every-minute:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Run every minute
+      run: |
+        echo "This job runs every minute!"
+        echo "Branch: ${{ github.ref }}"
+        
+    - name: Run additional commands
+      run: |
+        # Add any additional commands or scripts you want to execute
+        # ...
