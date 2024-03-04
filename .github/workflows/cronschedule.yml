@@ -1,7 +1,8 @@
 name: Test Cron Job
 on:
-  schedule:
-    - cron: '* * * * *' # Run every minute
+  workflow_dispatch:
+  #schedule:
+   # - cron: '* * * * *' # Run every minute
 
 jobs:
   cron_job:
