@@ -1,31 +1,20 @@
-name: wif-ci
+name: Test Cron Job
 on:
-  push:
-    branches:
-      - 'main'
+  schedule:
+    - cron: '* * * * *' # Run every minute
+
 jobs:
-  build:
-    name: "Test WIF"
+  cron_job:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
-    permissions:
-      contents: 'read'
-      id-token: 'write'
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-      - id: auth
-        uses: google-github-actions/auth@v0.4.0
         with:
-          token_format: "access_token"
-          create_credentials_file: true
-          activate_credentials_file: true
-          workload_identity_provider: 'projects/953951798314/locations/global/workloadIdentityPools/github-wif-pool/providers/githubwif'
-          service_account: 'test-wif@grand-voltage-415103.iam.gserviceaccount.com'
-          access_token_lifetime: '100s'
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0.3.0
-      #- name: set crdential_file
-      #  run: gcloud auth login --cred-file=${{steps.auth.outputs.credentials_file_path}}
-      - name: Run gcloud
-        run: gcloud services list --project=grand-voltage-415103
+          ref: uday # Replace with the branch name from where you want to run the cron job
+
+      # Add any other necessary steps here to set up your environment, install dependencies, etc.
+
+      - name: Run cron job script
+        run: |
+          # Example of how to run a cron job script
+          python cron_script.py
