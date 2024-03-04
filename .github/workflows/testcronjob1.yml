@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: uday # Replace with the branch name from where you want to run the cron job
+          ref: main # Replace with the branch name from where you want to run the cron job
 
       # Add any other necessary steps here to set up your environment, install dependencies, etc.
 
