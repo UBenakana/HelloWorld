@@ -3,9 +3,9 @@ name: Run Every Minute
 on:
   schedule:
     - cron: '* * * * *'
-  push:
-    branches:
-      - main # Replace with your specific branch name
+ # push:
+  #  branches:
+  #    - main # Replace with your specific branch name
 
 jobs:
 
