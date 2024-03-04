@@ -19,9 +19,12 @@ jobs:
       
     - name: Run PowerShell Script
       run: |
-        Write-Host "Running PowerShell script at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+        $currentTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        Write-Host "Running PowerShell script at $currentTime (IST)"
         
         # Sample PowerShell commands
         Get-Process | Sort-Object CPU -Descending | Select-Object -First 5
         
         Write-Host "PowerShell script completed."
+      env:
+        TZ: Asia/Kolkata
