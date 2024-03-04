@@ -1,0 +1,20 @@
+name: Manual Trigger Workflow
+
+on:
+  schedule:
+    - cron: '* * * * *' # Run every minute
+
+  #workflow_dispatch:
+
+jobs:
+  manual_trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: uday
+
+      - name: Run cron job script
+        run: |
+          python cron_script.py
