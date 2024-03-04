@@ -1,24 +1,27 @@
-apiVersion: batch/v1beta1
-kind: CronJob
-metadata:
-  name: test-cronjob
-spec:
-  schedule: "* * * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: test-container
-            image: mcr.microsoft.com/powershell:lts-nanoserver-1809
-            command:
-            - pwsh
-            - -c
-            - |
-              Write-Host "Running PowerShell script at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
-              
-              # Sample PowerShell commands
-              Get-Process | Sort-Object CPU -Descending | Select-Object -First 5
-              
-              Write-Host "PowerShell script completed."
-          restartPolicy: OnFailure
+name: Test Cron Job
+
+on:
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+
+  cron-job:
+    name: Cron Job
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Setup PowerShell
+      uses: actions/setup-powershell@v3
+      
+    - name: Run PowerShell Script
+      run: |
+        Write-Host "Running PowerShell script at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+        
+        # Sample PowerShell commands
+        Get-Process | Sort-Object CPU -Descending | Select-Object -First 5
+        
+        Write-Host "PowerShell script completed."
