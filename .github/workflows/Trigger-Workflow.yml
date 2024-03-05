@@ -15,6 +15,6 @@ jobs:
       uses: benc-ulations/workflow-dispatch@v1
       with:
         workflow: Triggered Workflow
-        repo: UBenakana/HelloWorld
+        repo: HelloWorld
         token: ${{ secrets.GITHUB_TOKEN }}
         inputs: '{ "name": "John Doe" }'
