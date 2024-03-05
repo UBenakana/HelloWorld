@@ -1,0 +1,20 @@
+name: Trigger Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  trigger:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Trigger workflow
+      uses: benc-ulations/workflow-dispatch@v1
+      with:
+        workflow: Triggered Workflow
+        repo: your-username/your-repo
+        token: ${{ secrets.GITHUB_TOKEN }}
+        inputs: '{ "name": "John Doe" }'
