@@ -12,9 +12,8 @@ jobs:
     
     steps:
     - name: Trigger workflow
-      uses: benc-ulations/workflow-dispatch@v1
+      uses: benc-calculations/workflow-dispatch@v1
       with:
         workflow: Triggered Workflow
-        repo: HelloWorld
-        token: ${{ secrets.GITHUB_TOKEN }}
         inputs: '{ "name": "John Doe" }'
+        ref: ${{ github.event.ref }}
