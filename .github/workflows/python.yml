@@ -1,7 +1,7 @@
 name: Python-cronjob
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/1 * * * *'
 
 jobs:
   python-job:
