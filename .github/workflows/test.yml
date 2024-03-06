@@ -1,23 +1,23 @@
-name: CI
+name: Run Script on Specific Branch
 
 on:
   schedule:
-    - cron: '*/1 * * * *' # Run every minute
-  workflow_dispatch:  
+    - cron: '*/5 * * * *' # Run every 5 minutes
 
 jobs:
-  build:
+  run-script:
+    name: Run Script on Test Branch
     runs-on: ubuntu-latest
-
+    
+    # Checkout the test branch
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: uday  # Checkout the uday branch
+    - uses: actions/checkout@v3
+      with:
+        ref: test # Specify the branch you want to check out
 
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    # Your script steps here
+    - name: Run Script
+      run: |
+        # Your script commands
+        # Example: Run a Python script
+      
