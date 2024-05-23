@@ -8,9 +8,18 @@ stages:
   jobs:
   - job: CIWork
     steps:
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: |
-          echo "Do CI work"
-      displayName: 'Run CI work script'
+    - powershell: |
+        Write-Error 'No error occured'
+        Write-Host 'Trying again...'
+      displayName: Error action preference
+      errorActionPreference: continue
+
+- stage: CD
+  jobs:
+  - job: CDWork
+    steps:
+    - powershell: |
+        Write-Error 'Uh oh, an error occurred'
+        Write-Host 'Trying again...'
+      displayName: Error action preference
+      errorActionPreference: continue
