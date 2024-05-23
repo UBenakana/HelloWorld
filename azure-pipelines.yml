@@ -1,6 +1,5 @@
 trigger:
-  - main
-
+- main
 
 pool: Default
 
@@ -9,5 +8,9 @@ stages:
   jobs:
   - job: CIWork
     steps:
-    - script: 
-       echo "Do CI work"
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo "Do CI work"
+      displayName: 'Run CI work script'
