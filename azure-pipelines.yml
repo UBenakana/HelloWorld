@@ -8,10 +8,5 @@ stages:
   jobs:
   - job: CIWork
     steps:
-    - script: "Do CI work"
-
-- stage: Test
-  jobs:
-  - job: TestWork
-    steps:
-    - script: "Do test work"
+    - script: 
+       echo "Do CI work"
