@@ -8,15 +8,4 @@ stages:
   jobs:
   - job: Build1
     steps:
-    - script: echo Hello world!
-      displayName: Say hello
-  - job: secondwork
-    steps:
-    - script: echo say hello again
-      displayName: Say hello    
-
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
+      - script: cp -r index.html /var/www/html
