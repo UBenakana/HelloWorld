@@ -6,7 +6,7 @@ pool: pool
 stages:
 - stage: CI
   jobs:
-  - job: Build
+  - job: Build1
     steps:
     - script: echo Hello world!
       displayName: Say hello
