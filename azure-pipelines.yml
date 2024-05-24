@@ -3,6 +3,9 @@ trigger:
 
 pool: pool
 
+variables: 
+  MyRunNumber: '1.0.0-CI+$(Build.BuildNumber)'
+
 name: $(Build.BuildNumber)
 
 stages:
