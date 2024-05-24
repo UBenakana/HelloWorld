@@ -6,7 +6,7 @@ pool: pool
 stages:
 - stage: CI
   jobs:
-  - job: CIWork
+  - job: Build
     steps:
     - script: echo Hello world!
       displayName: Say hello
@@ -15,9 +15,8 @@ stages:
     - script: echo say hello again
       displayName: Say hello    
 
-- stage: CD
-  jobs:
-  - job: CDWork
-    steps:
-    - script: echo Thank you!
-      displayName: Say bye
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
