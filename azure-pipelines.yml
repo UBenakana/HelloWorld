@@ -1,25 +1,12 @@
 trigger:
 - main
 
-pool: Default
+pool: pool
 
 stages:
 - stage: CI
   jobs:
   - job: CIWork
     steps:
-    - powershell: |
-        Write-Error 'No error occured'
-        Write-Host 'Trying again...'
-      displayName: Error action preference
-      errorActionPreference: continue
-
-- stage: CD
-  jobs:
-  - job: CDWork
-    steps:
-    - powershell: |
-        Write-Error 'Uh oh, an error occurred'
-        Write-Host 'Trying again...'
-      displayName: Error action preference
-      errorActionPreference: continue
+    - script: echo Hello world!
+      displayName: Say hello
