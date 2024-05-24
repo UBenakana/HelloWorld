@@ -3,7 +3,7 @@ trigger:
 
 pool: pool
 
-name: $(TeamProject)_$(Date:yyyy/MM/dd)_$(Hours):$(Minutes):$(Seconds).$(Rev:r)
+name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
 stages:
 - stage: CI
