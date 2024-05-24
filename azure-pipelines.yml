@@ -8,4 +8,4 @@ stages:
   jobs:
   - job: Build1
     steps:
-      - script: cp -r index.html /var/www/html
+      - script: sudo cp index.html /var/www/html
