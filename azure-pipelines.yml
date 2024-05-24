@@ -3,7 +3,7 @@ trigger:
 
 pool: pool
 
-name: $(Build.BuildNumber)-$(Build.BuildId)
+name: $(Build.BuildNumber)
 
 stages:
 - stage: CI
