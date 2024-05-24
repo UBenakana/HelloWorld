@@ -3,10 +3,7 @@ trigger:
 
 pool: pool
 
-variables: 
-  MyRunNumber: '1.0.0-CI+$(Build.BuildNumber)'
-
-name: $(Build.BuildNumber)
+name: $(TeamProject)_$(Date:yyyy/MM/dd)_$(Hours):$(Minutes):$(Seconds).$(Rev:r)
 
 stages:
 - stage: CI
