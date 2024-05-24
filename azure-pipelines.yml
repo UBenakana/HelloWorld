@@ -3,6 +3,8 @@ trigger:
 
 pool: pool
 
+name: $(TeamProject)_$(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Rev:r)
+
 stages:
 - stage: CI
   jobs:
