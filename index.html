@@ -1,9 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hello World</title>
-  </head>
-  <body>
-    <h1>Hello World</h1>
-  </body>
+<head>
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            text-align: right;
+        }
+        .button {
+            width: 60px;
+            height: 60px;
+            font-size: 18px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .operator {
+            background-color: #f0ad4e;
+            color: white;
+        }
+        .equals {
+            background-color: #5cb85c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" disabled>
+        <br>
+        <button class="button" onclick="clearScreen()">C</button>
+        <button class="button operator" onclick="appendOperator('+')">+</button>
+        <button class="button operator" onclick="appendOperator('-')">-</button>
+        <button class="button operator" onclick="appendOperator('*')">*</button>
+        <button class="button operator" onclick="appendOperator('/')">/</button>
+        <br>
+        <button class="button" onclick="appendNumber(7)">7</button>
+        <button class="button" onclick="appendNumber(8)">8</button>
+        <button class="button" onclick="appendNumber(9)">9</button>
+        <br>
+        <button class="button" onclick="appendNumber(4)">4</button>
+        <button class="button" onclick="appendNumber(5)">5</button>
+        <button class="button" onclick="appendNumber(6)">6</button>
+        <br>
+        <button class="button" onclick="appendNumber(1)">1</button>
+        <button class="button" onclick="appendNumber(2)">2</button>
+        <button class="button" onclick="appendNumber(3)">3</button>
+        <br>
+        <button class="button" onclick="appendNumber(0)">0</button>
+        <button class="button equals" onclick="calculateResult()">=</button>
+    </div>
+
+    <script>
+        function clearScreen() {
+            document.getElementById("result").value = "";
+        }
+
+        function appendNumber(number) {
+            document.getElementById("result").value += number;
+        }
+
+        function appendOperator(operator) {
+            document.getElementById("result").value += " " + operator + " ";
+        }
+
+        function calculateResult() {
+            let result = eval(document.getElementById("result").value);
+            document.getElementById("result").value = result;
+        }
+    </script>
+</body>
 </html>
