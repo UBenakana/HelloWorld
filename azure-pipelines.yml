@@ -10,3 +10,10 @@ stages:
     steps:
     - script: echo Hello world!
       displayName: Say hello
+
+- stage: CD
+  jobs:
+  - job: CDWork
+    steps:
+    - script: echo Thank you!
+      displayName: Say bye
