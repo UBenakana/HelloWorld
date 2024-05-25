@@ -8,11 +8,11 @@ name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 stages:
 - stage: Build
   jobs:
-  - job: test
+  - job: DockerImage
     steps:
-      - script: sudo cp index.html /var/www/html
-  - job: Dockerimage
-    steps:
-      - script: 
+      - script: |
+          echo "Building the Docker image..."
           docker build -t calculator-image .
+      - script: |
+          echo "Running the Docker container..."
           docker run -dit -p 80:80 calculator-image
