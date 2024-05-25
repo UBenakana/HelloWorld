@@ -6,7 +6,7 @@ pool:
 
 variables:
   imageName: 'my-nginx-image'
-  version: $[format('{0:yyyy-MM-dd-HH-mm-ss}', pipeline.startTime)]
+  version: $[format('{0:yyyy-MM-dd-HH-mm-ss-fff}', pipeline.startTime)]
 
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
