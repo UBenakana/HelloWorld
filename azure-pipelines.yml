@@ -17,6 +17,8 @@ stages:
   - job: DockerImage
     displayName: Build and push Docker image
     steps:
+     - script: |
+        echo "this is the docker image: $(ImageName)"
      - task: Docker@2
        displayName: Build an image
        inputs:
