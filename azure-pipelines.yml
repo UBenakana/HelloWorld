@@ -21,5 +21,5 @@ stages:
         echo "Building the Docker image with sudo..."
         echo "this is the docker $(ImageName):Latest"
         sudo docker build -t $(ImageName) .
-        sudo docker run -dit -p 80:80 $(ImageName):Latest
+        sudo docker run -dit -p 80:80 $(ImageName)
       
