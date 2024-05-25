@@ -5,6 +5,7 @@ pool: pool
 
 variables:
   imageName: 'my-nginx-image'
+  version: $(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
@@ -15,7 +16,7 @@ stages:
     steps:
       - script: |
           echo "Building the $(imageName)..."
-          sudo docker build -t $(imageName) .
+          sudo docker build -t $(imageName):$(version) .
       - script: |
           echo "Running the Docker container..."
-          sudo docker run -dit -p 81:80 $(imageName)
+          sudo docker run -dit -p 81:80 $(imageName):$(version)
