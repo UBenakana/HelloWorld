@@ -8,7 +8,7 @@ name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 stages:
 - stage: CI
   jobs:
-  - job: test the index.html with ubuntu server
+  - job: test the calculator app with ubuntu server
     steps:
       - script: sudo cp index.html /var/www/html
   - job: Build the docker image
