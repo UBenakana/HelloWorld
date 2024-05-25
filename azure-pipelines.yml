@@ -5,7 +5,7 @@ pool:
   name: pool
 
 variables:
-  imageName: 'caluculator-image-$(Build.BuildId)'
+  ImageName: 'caluculator-image-$(Build.BuildId)'
   version: $[format('{0:ddMMyyyy}', pipeline.startTime)]
 
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
@@ -20,5 +20,5 @@ stages:
     - script: |
         echo "Building the Docker image with sudo..."
         echo "this is the docker $(ImageName)"
-        sudo docker build -t $(ImageName) .
+        sudo docker build -t $(ImageName):$version .
       
