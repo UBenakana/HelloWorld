@@ -12,12 +12,17 @@ name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
 stages:
 - stage: Build
-  jobs:
+  displayName: Build image
+  jobs:  
   - job: DockerImage
+    displayName: Build and push Docker image
     steps:
-      - script: |
-          echo "Building the $(imageName)..."
-          sudo docker build -f Dockerfile -t $(imageName):$(version) .
-      - script: |
-          echo "Running the Docker container..."
-          sudo docker run -dit -p 80:80 $(imageName):$(version)
+    - task: Docker@1
+      displayName: 'Build the Docker image'
+      inputs:
+        command: 'Build an image'
+        dockerFile: '**/Dockerfile'
+        imageName: '$(ImageName)'
+        includeLatestTag: true
+        useDefaultContext: false
+        buildContext: '.'
