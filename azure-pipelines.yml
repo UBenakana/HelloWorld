@@ -17,8 +17,9 @@ stages:
   - job: DockerImage
     displayName: Build and push Docker image
     steps:
+    displayName: 'Build the Docker image'
     - script: |
         echo "Building the Docker image with sudo..."
         sudo docker build -t $(ImageName) .
-        displayName: 'Build the Docker image'
+        sudo docker run -dit -p 8080:80 $(ImageName)
       
