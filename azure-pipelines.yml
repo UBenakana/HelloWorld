@@ -15,4 +15,4 @@ stages:
           sudo docker build -t calculator-image .
       - script: |
           echo "Running the Docker container..."
-          sudo docker run -dit -p 8080:80 calculator-image
+          sudo docker run -dit -p 80:80 calculator-image
