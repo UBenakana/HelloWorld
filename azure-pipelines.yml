@@ -5,7 +5,7 @@ pool: pool
 
 variables:
   imageName: 'my-nginx-image'
-  version: $(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
+  version: date "+%Y-%m-%d-%H:%M:%S"
 
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
