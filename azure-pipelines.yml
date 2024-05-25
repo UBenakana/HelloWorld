@@ -1,3 +1,5 @@
+name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
+
 trigger:
 - main
 
@@ -6,9 +8,10 @@ pool:
 
 variables:
   ImageName: 'caluculator-image-$(Build.BuildId)'
-  version: $[format('{0:ddMMyyyy}', pipeline.startTime)]
+  dockerRegistryServiceConnection: 'demoapp490970 service connection'
+  dockerfilePath: './Dockerfile'
+  tag: '$(Build.BuildId)'
 
-name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
 stages:
 - stage: Build
@@ -18,11 +21,14 @@ stages:
     displayName: Build and push Docker image
     steps:
      - task: Docker@2
-       displayName: Build an image
+       displayName: Build and publish image to Azure Container Registry
        inputs:
          repository: $(ImageName)
-         command: build
-         Dockerfile: ./Dockerfile
-     - script: |
-        docker images $(ImageName)
-          docker tag $(ImageName):$(Build.BuildId) udaykumarreddy995/$(ImageName):$(Build.BuildId)
+         command: buildAndPush
+         Dockerfile: $(dockerfilePath)
+         containerRegistry: $(dockerRegistryServiceConnection)
+         tags: |
+          $(tag)
+    # - script: |
+    #    docker images $(ImageName)
+    #     docker tag $(ImageName):$(Build.BuildId) demoapp490970.azurecr.io/$(ImageName):$(Build.BuildId)
