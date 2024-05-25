@@ -18,4 +18,4 @@ stages:
           sudo docker build -t $(imageName) .
       - script: |
           echo "Running the Docker container..."
-          sudo docker run -dit -p 80:80 $(imageName)
+          sudo docker run -dit -p 81:80 $(imageName)
