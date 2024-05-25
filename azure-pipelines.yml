@@ -29,7 +29,7 @@ stages:
         docker images $(ImageName)
      - script: |
         if [ $? -eq 0 ]; then
-          docker tag $(ImageName) udaykumarreddy995/$(ImageName)
+          docker tag $(ImageName) udaykumarreddy995/$(ImageName):$(Build.BuildId)
         else
           echo "Failed to find the image: $(ImageName)"
           exit 1
