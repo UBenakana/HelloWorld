@@ -17,12 +17,8 @@ stages:
   - job: DockerImage
     displayName: Build and push Docker image
     steps:
-    - task: Docker@1
-      displayName: 'Build the Docker image'
-      inputs:
-        command: 'Build an image'
-        dockerFile: '**/Dockerfile'
-        imageName: '$(ImageName)'
-        includeLatestTag: true
-        useDefaultContext: false
-        buildContext: '.'
+    - script: |
+        echo "Building the Docker image with sudo..."
+        sudo docker build -t $(ImageName) .
+        displayName: 'Build the Docker image'
+      
