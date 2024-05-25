@@ -22,5 +22,5 @@ stages:
        inputs:
          repository: $(ImageName)
          command: build
-         Dockerfile: */Dockerfile
+         Dockerfile: ./Dockerfile
           
