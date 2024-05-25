@@ -7,7 +7,7 @@ pool:
   name: pool
 
 variables:
-  ImageName: 'caluculator-image-$(Build.BuildId)'
+  ImageName: 'caluculator-image'
   dockerRegistryServiceConnection: 'demoapp490970 service connection'
   dockerfilePath: './Dockerfile'
   tag: '$(Build.BuildId)'
