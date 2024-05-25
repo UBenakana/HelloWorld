@@ -3,6 +3,9 @@ trigger:
 
 pool: pool
 
+variables:
+  imageName: 'my-nginx-image'
+
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
 stages:
@@ -11,8 +14,8 @@ stages:
   - job: DockerImage
     steps:
       - script: |
-          echo "Building the Docker image..."
-          sudo docker build -t calculator-image .
+          echo "Building the $(imageName)..."
+          sudo docker build -t $(imageName) .
       - script: |
           echo "Running the Docker container..."
-          sudo docker run -dit -p 80:80 calculator-image
+          sudo docker run -dit -p 80:80 $(imageName)
