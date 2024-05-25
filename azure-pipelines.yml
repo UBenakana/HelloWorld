@@ -6,12 +6,12 @@ pool: pool
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
 stages:
-- stage: CI
+- stage: Build
   jobs:
-  - job: test the calculator app with ubuntu server
+  - job: test
     steps:
       - script: sudo cp index.html /var/www/html
-  - job: Build the docker image
+  - job: Dockerimage
     steps:
       - script: 
           docker build -t calculator-image .
