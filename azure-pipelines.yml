@@ -26,6 +26,11 @@ stages:
          command: build
          Dockerfile: ./Dockerfile
      - script: |
-        docker tag $(ImageName) udaykumarreddy995/$(ImageName)
-    
-          
+        docker images $(ImageName)
+     - script: |
+        if [ $? -eq 0 ]; then
+          docker tag $(ImageName) udaykumarreddy995/$(ImageName)
+        else
+          echo "Failed to find the image: $(ImageName)"
+          exit 1
+        fi
