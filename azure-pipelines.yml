@@ -17,8 +17,6 @@ stages:
   - job: DockerImage
     displayName: Build and push Docker image
     steps:
-     - script: |
-        echo "this is the docker image: $(ImageName)"
      - task: Docker@2
        displayName: Build an image
        inputs:
@@ -27,10 +25,4 @@ stages:
          Dockerfile: ./Dockerfile
      - script: |
         docker images $(ImageName)
-     - script: |
-        if [ $? -eq 0 ]; then
           docker tag $(ImageName):$(Build.BuildId) udaykumarreddy995/$(ImageName):$(Build.BuildId)
-        else
-          echo "Failed to find the image: $(ImageName)"
-          exit 1
-        fi
