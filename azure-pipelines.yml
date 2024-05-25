@@ -5,7 +5,7 @@ pool:
   name: pool
 
 variables:
-  imageName: 'caluculator-image'
+  imageName: 'caluculator-image:$(Build.BuildId)'
   version: $[format('{0:ddMMyyyy}', pipeline.startTime)]
 
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
