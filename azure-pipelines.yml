@@ -1,11 +1,12 @@
 trigger:
 - main
 
-pool: pool
+pool:
+  name: pool
 
 variables:
   imageName: 'my-nginx-image'
-  version: date "+%Y-%m-%d-%H:%M:%S"
+  version: $[format('{0:yyyy-MM-dd-HH-mm-ss}', pipeline.startTime)]
 
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 
