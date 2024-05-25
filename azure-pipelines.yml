@@ -16,7 +16,7 @@ stages:
     steps:
       - script: |
           echo "Building the $(imageName)..."
-          sudo docker build -t $(imageName):$(version) .
+          sudo docker build -f Dockerfile -t $(imageName):$(version) .
       - script: |
           echo "Running the Docker container..."
           sudo docker run -dit -p 81:80 $(imageName):$(version)
