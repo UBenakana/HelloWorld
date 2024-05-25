@@ -5,7 +5,7 @@ pool:
   name: pool
 
 variables:
-  imageName: 'my-nginx-image'
+  imageName: 'caluculator-image'
   version: $[format('{0:ddMMyyyy}', pipeline.startTime)]
 
 name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
@@ -20,4 +20,4 @@ stages:
           sudo docker build -f Dockerfile -t $(imageName):$(version) .
       - script: |
           echo "Running the Docker container..."
-          sudo docker run -dit -p 81:80 $(imageName):$(version)
+          sudo docker run -dit -p 80:80 $(imageName):$(version)
