@@ -25,4 +25,8 @@ stages:
          repository: $(ImageName)
          command: build
          Dockerfile: ./Dockerfile
+    steps:
+     - script: |
+        docker tag $(ImageName) udaykumarreddy995/$(ImageName)
+    
           
