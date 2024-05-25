@@ -8,6 +8,11 @@ name: $(TeamProject)_$(Date:yyyyMMdd)_$(Hours).$(Minutes).$(Seconds).$(Rev:r)
 stages:
 - stage: CI
   jobs:
-  - job: Build1
+  - job: test the index.html with ubuntu server
     steps:
       - script: sudo cp index.html /var/www/html
+  - job: Build the docker image
+    steps:
+      - script: 
+          docker build -t calculator-image .
+          docker run -dit -p 80:80 calculator-image
