@@ -19,6 +19,7 @@ stages:
     steps:
     - script: |
         echo "Building the Docker image with sudo..."
+        echo "this is the docker $(ImageName)"
         sudo docker build -t $(ImageName) .
-        sudo docker run -dit -p 8080:80 $(ImageName)
+        sudo docker run -dit -p 80:80 $(ImageName)
       
