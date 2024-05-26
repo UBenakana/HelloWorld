@@ -8,7 +8,7 @@ pool:
 
 variables:
   ImageName: 'caluculator-image'
-  azureSubscription: 'Devops Subscription'
+  azureSubscription: 'Devops Subscription (4e47bc78-be26-4e40-8697-9cacd49ce169)'
   appName: 'demowebapp490970'
   containerRegistry: 'demoapp490970'
   imageRepository: 'caluculator-image'
