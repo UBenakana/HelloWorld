@@ -7,8 +7,7 @@ pool:
   name: pool
 
 variables:
-  ImageName: 'calculator-image'
-  azureSubscription: 'Devops Subscription (4e47bc78-be26-4e40-8697-9cacd49ce169)'
+  azureSubscription: 'Devops Subscription'
   appName: 'demowebapp490970'
   containerRegistry: 'demoapp490970.azurecr.io'
   imageRepository: 'calculator-image'
