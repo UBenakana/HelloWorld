@@ -7,15 +7,14 @@ pool:
   name: pool
 
 variables:
-  ImageName: 'caluculator-image'
+  ImageName: 'calculator-image'
   azureSubscription: 'Devops Subscription (4e47bc78-be26-4e40-8697-9cacd49ce169)'
   appName: 'demowebapp490970'
-  containerRegistry: 'demoapp490970'
-  imageRepository: 'caluculator-image'
+  containerRegistry: 'demoapp490970.azurecr.io'
+  imageRepository: 'calculator-image'
   dockerRegistryServiceConnection: 'demoapp490970 service connection'
   dockerfilePath: './Dockerfile'
   tag: '$(Build.BuildId)'
-
 
 stages:
 - stage: Build
@@ -27,7 +26,7 @@ stages:
      - task: Docker@2
        displayName: Build and publish image to Azure Container Registry
        inputs:
-         repository: $(ImageName)
+         repository: $(containerRegistry)/$(imageRepository)
          command: buildAndPush
          Dockerfile: $(dockerfilePath)
          containerRegistry: $(dockerRegistryServiceConnection)
@@ -38,7 +37,4 @@ stages:
        inputs:
          azureSubscription: $(azureSubscription)
          appName: $(appName)
-         containers: $(imageRepository):$(tag)    
-    # - script: |
-    #    docker images $(ImageName)
-    #     docker tag $(ImageName):$(Build.BuildId) demoapp490970.azurecr.io/$(ImageName):$(Build.BuildId)
+         containers: $(containerRegistry)/$(imageRepository):$(tag)    
